@@ -1,0 +1,125 @@
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+</head>
+
+<body>
+   
+    <div *ngIf="authenticated == false" class="container form-group">
+        <div class="row">
+            <div class="col text-center" style="padding: 10px">
+                <img style="width: 128px" src="../assets/logo.png">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                E-Mail
+            </div>
+            <div class="col-8">
+                <input type="email" class="form-control" [(ngModel)]="email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                Password
+            </div>
+            <div class="col-8">
+                <input type="password" class="form-control" [(ngModel)]="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="text-center">
+                    <button class="btn btn-success" (click)="login()">Login</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="loginError == true" class="row">
+            <div class="col">
+                <div class="text-center">
+                    Invalid username and/or password. Please try again.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="authenticated == true" class="container form-group">
+        <div class="row">
+            <div class="col text-center" style="padding: 10px">
+                <img style="width: 128px" src="../assets/logo.png">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="text-info">
+                    Logged in as
+                </div>
+            </div>
+            <div class="col">
+                <div class="">
+                    {{email}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="text-info">
+                    Registered Address                    
+                </div>
+            </div>
+            <div class="col">
+                <div class="">
+                    {{userAddressDetails?.street_number}} {{userAddressDetails?.route}} <br>
+                    {{userAddressDetails?.postal_town}}<br> 
+                    {{userAddressDetails?.administrative_area_level_2}}<br> 
+                    {{userAddressDetails?.postal_code}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="text-muted small">
+                    Auth Token                   
+                </div>
+            </div>
+            <div class="col-10">
+                <div style="word-wrap: break-word;" class="text-muted small">                    
+                    {{authToken}}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                &nbsp;
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="text-center">
+                    <button class="btn btn-danger" (click)="logout()">Logout</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>
