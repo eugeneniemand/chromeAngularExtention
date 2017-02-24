@@ -37,7 +37,7 @@ export class EventPage {
 
     createAuthorizationHeader(headers: Headers) {
         headers.append('Accept', 'application/json')
-        headers.append('Authorization', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6ImIxODk0MWExLWE3OWEtNDFmMi1iMTA3LWU1YzAyMTFmMTI0NyJ9.clcHiP0VV3fzIRXFLS30P9tu5AonIi0MKoX9axmv1eo') //+ btoa('username:password'));
+        headers.append('Authorization', this.authToken) //+ btoa('username:password'));
         headers.append('Cache-Control', 'no-cache')
     }
 
@@ -48,7 +48,7 @@ export class EventPage {
         chrome.tabs.captureVisibleTab(null, { format: "png" }, (image) => {
             chrome.tabs.getSelected(null, (tab) => {
                 let newDoc: Object = {
-                    name: tab.title,
+                    site_name: tab.title,
                     url: tab.url,
                     image_data: image
                 };
@@ -56,7 +56,10 @@ export class EventPage {
                 this.http
                     .post("http://10.44.4.57:5000/api/v1/upload", newDoc, { headers: headers })
                     .toPromise()
-                    .then(result => { console.log(result) })
+                    .then(result => { 
+                        alert("Success")
+                        console.log(result) 
+                    })
                     .catch(error => { console.log(error) })
             });
         });

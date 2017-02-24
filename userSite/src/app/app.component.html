@@ -17,11 +17,13 @@
             <div class="col text-center" style="padding: 10px">
                 <div class="jumbotron">
                     <img style="width: 118px" src="../assets/logo.png">
-                    <h1>Claimy</h1>
-                    <p>Authenticate People Digitally</p>
+                    <h1>digiClaim</h1>
+                    <p>digitally authenticating people </p>
                 </div>
             </div>
         </div>
+    </div>
+    <div *ngIf="registrationStatus == false" class="container-fluid form-group">
         <div class="row">
             <div class="col-4">
                 E-Mail
@@ -122,7 +124,15 @@
                 </div>
             </div>
         </div>
-
+    </div>
+    <div *ngIf="registrationStatus == true" class="container-fluid form-group">
+        <div class="row">
+            <div class="col text-center" style="padding: 10px">
+                Registration Successful... <br> Please log in on the extention's options page and start uploading your documents
+            </div>
+        </div>
+    </div>
+     <div class="container-fluid form-group">
         <div class="row">
             <div class="col">
                 &nbsp;

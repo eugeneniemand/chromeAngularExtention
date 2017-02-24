@@ -6,6 +6,8 @@
 .jumbotron { 
     background-color: #009E0B; /* Orange */
     color: #ffffff;
+    margin: 0px;
+    padding: 32px;
 }
 
 .bg-green {

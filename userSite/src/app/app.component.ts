@@ -32,7 +32,7 @@ export class AppComponent {
   locality: string
   postal_code: string
 
-  
+  registrationStatus: boolean = false
 
   async register() {
     if (!this.passwordMatch) {
@@ -56,10 +56,15 @@ export class AppComponent {
 
     console.log("payload", payLoad)
     let headers = new Headers({ 'content-type': 'application/json' })
+    try {
     let postResp = await this.http
       .post("http://10.44.4.57:5000/api/v1/auth/register", payLoad, headers)
       .toPromise()
-    console.log(postResp)
+    this.registrationStatus = (postResp.json().message == "Successfully created your account." ? true : false)
+    console.log(postResp.json())
+    } catch (ex) {
+      console.log(ex)
+    }
 
     // let headers = new Headers({ 'Access-Control-Allow-Origin': '*' })
     // console.log("Test Get", headers)
