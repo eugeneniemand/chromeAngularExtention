@@ -32,9 +32,11 @@ export class AppComponent {
   password: string
   loginError: boolean = false
   userAddressDetails: Object
+  userDocuments: Object[]
 
   ngOnInit() {
     this.getAddress()
+    this.getDocuments()
   }
 
   get authenticated(): boolean {
@@ -64,6 +66,14 @@ export class AppComponent {
       (ex) => {
         this.loginError = true
       })
+  }
+
+  getDocuments() {
+    this.userDocuments = [
+      new Object({ siteTitle: "Barclays", address: "123 High Street, Code Town, AB12CD", match: "Full", cssClass: "fa fa-check-square" }),
+      new Object({ siteTitle: "Sky", address: "123 AB12CD", match: "Partial", cssClass: "fa fa-exclamation-triangle" }),
+      new Object({ siteTitle: "Lebara", address: "123", match: "None", cssClass: "fa fa-times-circle" })
+    ]
   }
 
   getAddress() {

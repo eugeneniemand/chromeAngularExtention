@@ -11,7 +11,7 @@
 </head>
 
 <body>
-   
+
     <div *ngIf="authenticated == false" class="container form-group">
         <div class="row">
             <div class="col text-center" style="padding: 10px">
@@ -76,35 +76,44 @@
         <div class="row">
             <div class="col">
                 <div class="text-info">
-                    Registered Address                    
+                    Registered Address
                 </div>
             </div>
             <div class="col">
                 <div class="">
-                    {{userAddressDetails?.street_number}} {{userAddressDetails?.route}} <br>
-                    {{userAddressDetails?.postal_town}}<br> 
-                    {{userAddressDetails?.administrative_area_level_2}}<br> 
-                    {{userAddressDetails?.postal_code}}
+                    {{userAddressDetails?.street_number}} {{userAddressDetails?.route}} <br> {{userAddressDetails?.postal_town}}
+                    <br> {{userAddressDetails?.administrative_area_level_2}}
+                    <br> {{userAddressDetails?.postal_code}}
                 </div>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-2">
-                <div class="text-muted small">
-                    Auth Token                   
-                </div>
-            </div>
-            <div class="col-10">
-                <div style="word-wrap: break-word;" class="text-muted small">                    
-                    {{authToken}}
-                </div>
+            <div class="col text-center">
+                <h5 class="text-info">Verified Documents</h5>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                &nbsp;
+                <table class="table table-striped ">
+                    <thead>
+                        <tr>
+                            <th>Site</th>
+                            <th>Address Found</th>
+                            <th>Match</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doc of userDocuments">
+                            <td>{{doc.siteTitle}}</td>
+                            <td>{{doc.address}}</td>
+                            <td><i [class]="doc.cssClass"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
+
         <div class="row">
             <div class="col">
                 <div class="text-center">
@@ -112,6 +121,19 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-2">
+                <div class="text-muted small">
+                    Auth Token
+                </div>
+            </div>
+            <div class="col-10">
+                <div style="word-wrap: break-word;" class="text-muted small">
+                    {{authToken}}
+                </div>
+            </div>
+        </div>
+
     </div>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
