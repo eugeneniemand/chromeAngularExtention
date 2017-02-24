@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+</head>
+
+<body class="bg-green">    
+    <div class="container-fluid form-group">
+        <div class="row">
+            <div class="col text-center" style="padding: 10px">
+                <div class="jumbotron">
+                    <img style="width: 118px" src="../assets/logo.png">
+                    <h1>Claimy</h1>
+                    <p>Authenticate People Digitally</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                E-Mail
+            </div>
+            <div class="col-8">
+                <input type="email" class="form-control" [(ngModel)]="email">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                Password
+            </div>
+            <div class="col-8">
+                <input type="password" class="form-control" [(ngModel)]="password">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                Confirm
+            </div>
+            <div class="col-8">
+                <input type="password" class="form-control" [(ngModel)]="password_conf">
+            </div>
+        </div>
+        <div *ngIf="passwordMatch == false" class="row">
+            <div class="col-4">
+
+            </div>
+            <div class="col-8">
+                Passwords dont match
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                Full Name
+            </div>
+            <div class="col-8">
+                <input type="text" class="form-control" [(ngModel)]="fullname">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                House No
+            </div>
+            <div class="col-8">
+                <input type="text" class="form-control" [(ngModel)]="street_number">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                Street
+            </div>
+            <div class="col-8">
+                <input type="text" class="form-control" [(ngModel)]="route">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                Town
+            </div>
+            <div class="col-8">
+                <input type="text" class="form-control" [(ngModel)]="postal_town">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                County
+            </div>
+            <div class="col-8">
+                <input type="text" class="form-control" [(ngModel)]="administrative_area_level_2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                Country
+            </div>
+            <div class="col-8">
+                <select class="form-control" [(ngModel)]="administrative_area_level_1">
+                    <option value="England">England</option>
+                    <option value="Wales">Wales</option>
+                    <option value="Scotland">Scotland</option>
+                    <option value="Northern Ireland">Northern Ireland</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                Post Code
+            </div>
+            <div class="col-8">
+                <input type="text" class="form-control" [(ngModel)]="postal_code">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="text-center">
+                    <button class="btn btn-success" (click)="register()">Register</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                &nbsp;
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                &nbsp;
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery first, then Tether, then Bootstrap JS. -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+            crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+                crossorigin="anonymous"></script>
+</body>
+
+</html>

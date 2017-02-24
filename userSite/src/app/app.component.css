@@ -1,0 +1,13 @@
+.row{
+  margin-bottom: 5px
+}
+
+
+.jumbotron { 
+    background-color: #009E0B; /* Orange */
+    color: #ffffff;
+}
+
+.bg-green {
+    background-color: #D9FFDB;
+}
