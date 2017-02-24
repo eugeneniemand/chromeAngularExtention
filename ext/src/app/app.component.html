@@ -53,14 +53,32 @@
                 </div>
             </div>
         </div>
-    </div>
 
+
+    </div>
     <div *ngIf="authenticated == true" class="container form-group">
         <div class="row">
             <div class="col text-center" style="padding: 10px">
                 <img style="width: 128px" src="../assets/logo.png">
+
             </div>
+
         </div>
+        <div class="row">
+            <div class="col">
+
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a [class]="activePageCss('user')" (click)="selectActivePage('user')">User</a></li>
+                    <li class="nav-item"><a [class]="activePageCss('docs')" (click)="selectActivePage('docs')">Docs</a></li>
+                </ul>
+            </div>
+
+
+        </div>
+    </div>
+    <div *ngIf="authenticated == true && activePage == 'user'" class="container form-group">
+
+
         <div class="row">
             <div class="col">
                 <div class="text-info">
@@ -84,10 +102,14 @@
                     {{userAddressDetails?.street_number}} {{userAddressDetails?.route}} <br> {{userAddressDetails?.postal_town}}
                     <br> {{userAddressDetails?.administrative_area_level_2}}
                     <br> {{userAddressDetails?.postal_code}}
+                    <br> {{userAddressDetails?.administrative_area_level_1}}
+                    <br> {{userAddressDetails?.country}}
                 </div>
             </div>
         </div>
+    </div>
 
+    <div *ngIf="authenticated == true && activePage == 'docs'" class="container form-group">
         <div class="row">
             <div class="col text-center">
                 <h5 class="text-info">Verified Documents</h5>
@@ -105,8 +127,8 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let doc of userDocuments">
-                            <td >{{doc.siteTitle}}</td>
-                            <td>{{doc.address}}</td>
+                            <td>{{doc.site_name}}</td>
+                            <td>{{doc.url}}</td>
                             <td class="text-center"><i [class]="doc.cssClass"></i></td>
                         </tr>
                     </tbody>
@@ -114,13 +136,7 @@
             </div>
         </div>
 
-        <div class="row">
-            <div class="col">
-                <div class="text-center">
-                    <button class="btn btn-danger" (click)="logout()">Logout</button>
-                </div>
-            </div>
-        </div>
+
         <div class="row">
             <div class="col-2">
                 <div class="text-muted small">
@@ -134,6 +150,13 @@
             </div>
         </div>
 
+    </div>
+    <div *ngIf="authenticated == true" class="container form-group">
+        <div class="row">
+            <div class="col text-center">
+               <button class="btn btn-danger" (click)="logout()">Logout</button>
+            </div>
+        </div>
     </div>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"

@@ -25,7 +25,6 @@ export class AppComponent {
   constructor(private eventPage: EventPage, private http: Http) {
     this.authToken = this.eventPage.authToken
     this.email = this.eventPage.email
-    this.getAddress()
   }
   authToken: string
   email: string
@@ -34,9 +33,23 @@ export class AppComponent {
   userAddressDetails: Object
   userDocuments: Object[]
 
+  activePage: string = "user"
+  activePageCss(page: string): string {
+    if (this.activePage == page)
+      return "nav-link active"
+    else
+      return "nav-link"
+  }
+
+  selectActivePage(page: string) {
+    this.activePage = page
+  }
+
   ngOnInit() {
-    this.getAddress()
-    this.getDocuments()
+    if (this.authenticated) {
+      this.getAddress()
+      this.getDocuments()
+    }
   }
 
   get authenticated(): boolean {
@@ -61,6 +74,8 @@ export class AppComponent {
         this.authToken = postResp.json().token
         this.eventPage.authToken = this.authToken
         this.eventPage.email = this.email
+        this.getAddress()
+        this.getDocuments()
       })
       .catch(
       (ex) => {
@@ -68,12 +83,29 @@ export class AppComponent {
       })
   }
 
+  createAuthorizationHeader(headers: Headers) {
+    headers.append('Accept', 'application/json')
+    headers.append('Authorization', this.authToken) //+ btoa('username:password'));
+    headers.append('Cache-Control', 'no-cache')
+  }
+
   getDocuments() {
-    this.userDocuments = [
-      new Object({ siteTitle: "Barclays", address: "123 High Street, Code Town, AB12CD", match: "Full", cssClass: "fa fa-lg fa-check-square" }),
-      new Object({ siteTitle: "Sky", address: "123 AB12CD", match: "Partial", cssClass: "fa fa-lg fa-exclamation-triangle" }),
-      new Object({ siteTitle: "Lebara", address: "123", match: "None", cssClass: "fa fa-lg fa-times-circle" })
-    ]
+    // this.userDocuments = [
+    //   new Object({ siteTitle: "Barclays", address: "123 High Street, Code Town, AB12CD", match: "Full", cssClass: "fa fa-lg fa-check-square" }),
+    //   new Object({ siteTitle: "Sky", address: "123 AB12CD", match: "Partial", cssClass: "fa fa-lg fa-exclamation-triangle" }),
+    //   new Object({ siteTitle: "Lebara", address: "123", match: "None", cssClass: "fa fa-lg fa-times-circle" })
+    // ]
+    let headers: Headers = new Headers()
+    this.createAuthorizationHeader(headers)
+    console.log(headers)
+    this.http
+      .get("http://10.44.4.57:5000/api/v1/files", { headers: headers })
+      .toPromise()
+      .then(
+      response => {
+        this.userDocuments = response.json()
+        console.log(response.json())
+      })
   }
 
   getAddress() {
