@@ -19,7 +19,7 @@ interface User {
 })
 export class AppComponent {
   /**
-   *
+   *http://10.44.4.57:5000/api/v1/users
    */
 
   constructor(private eventPage: EventPage, private http: Http) {
@@ -87,6 +87,20 @@ export class AppComponent {
     headers.append('Accept', 'application/json')
     headers.append('Authorization', this.authToken) //+ btoa('username:password'));
     headers.append('Cache-Control', 'no-cache')
+  }
+
+
+  cssClass() {
+    let rnd = Math.floor(Math.random() * 3) + 1
+    switch (rnd) {
+      case 1:
+        return "fa fa-lg fa-check-square"
+      case 2:
+        return "fa fa-lg fa-exclamation-triangle"
+      case 3:
+        return "fa fa-lg fa-times-circle"
+
+    }
   }
 
   getDocuments() {

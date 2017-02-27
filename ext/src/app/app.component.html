@@ -129,7 +129,7 @@
                         <tr *ngFor="let doc of userDocuments">
                             <td>{{doc.site_name}}</td>
                             <td>{{doc.url}}</td>
-                            <td class="text-center"><i [class]="doc.cssClass"></i></td>
+                            <td class="text-center"><i [class]="cssClass()"></i></td>
                         </tr>
                     </tbody>
                 </table>
